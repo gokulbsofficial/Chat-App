@@ -1,0 +1,182 @@
+.right-area {
+    flex: 65%;
+
+    &#hidden {
+        display: none;
+    }
+
+    .chat-info {
+        width: 100%;
+        height: 100vh;
+
+        .chat-info-top {
+            width: 100%;
+            height: 58px;
+            background-color: $chat-top-bottom;
+            display: flex;
+            align-items: center;
+
+            .back-btn {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                margin-left: 2px;
+
+                .left-arrow-icon {
+                    border-radius: 50px;
+                    margin: 5px;
+                    .fa-arrow-left {
+                        font-size: 1.3rem;
+                        padding: 10px;
+                    }
+                }
+
+                @include respond-above(md) {
+                    display: none;
+                }
+            }
+
+            .profile {
+                display: flex;
+                .profile_pic {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 30px;
+                }
+                @include respond-above(md) {
+                    margin-left: 12px;
+                }
+            }
+
+            .group-detail {
+                position: relative;
+                height: inherit;
+                flex: 40%;
+
+                .group-name {
+                    position: absolute;
+                    top: 0.6rem;
+                    left: 0.6rem;
+                }
+
+                .group-members {
+                    position: absolute;
+                    bottom: 0.2rem;
+                    left: 0.66rem;
+                }
+            }
+
+            .more {
+                flex: 20%;
+                height: inherit;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+
+                .more-icon {
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 0.5rem;
+                }
+            }
+        }
+
+        .group-chats {
+            width: 100%;
+            height: calc(100vh - 116px);
+            overflow-x: hidden;
+            overflow-y:auto;
+            background-image: url(https://s-media-cache-ak0.pinimg.com/originals/51/ed/c0/51edc046eb80046ee4755ee71d0f19ca.jpg);
+
+
+            .msg {
+                position: relative;
+                width: auto;
+                height: auto;
+                min-width: 100px;
+                max-width: 45%;
+                background: #eeeeee;
+                border-radius: 7px;
+                clear: both;	
+                padding: 25px;
+                padding-bottom: 35px;
+                margin: 20px 15px;
+                margin-bottom: 0px;
+
+                &:nth-last-child(1) {
+                    margin-bottom: 20px;
+                }
+
+                .timestamp{
+                    display: block;
+                    position: absolute;
+                    right: 10px;
+                    bottom: 6px;
+                    color: #AAA;
+
+                    .readed{
+                        color:green;
+                    }
+                }
+
+            }
+            .msgSent{
+                float: right;
+                background-color: $outgoing-message-background;
+            }
+            .msgReceived{
+                float: left;
+                background-color: $incoming-message-background;
+            }
+
+        }
+
+        .chat-info-bottom {
+            width: 100%;
+            height: 58px;
+            background-color: $chat-top-bottom;
+            display: flex;
+            align-items: center;
+
+            .emoji-icon {
+                &#hidden {
+                    display: none;
+                }
+            }
+
+            .message-box {
+                flex: 50%;
+                input[type="text"] {
+                    border: none;
+                    outline: none;
+                    height: 32px;
+                    border-radius: 7px;
+                    padding: 5px;
+                    font-size: 1.2rem;
+                    background-color: transparent;
+                    width: 100%;
+                }
+                &#hidden {
+                    display: none;
+                }
+            }
+            .paper-clip {
+                .fa-paperclip {
+                    font-size: 1.6rem;
+                }
+                &#hidden {
+                    display: none;
+                }
+            }
+            .microphone {
+                &#hidden {
+                    display: none;
+                }
+            }
+        }
+    }
+}

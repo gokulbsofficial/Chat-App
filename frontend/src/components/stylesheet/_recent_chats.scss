@@ -1,0 +1,279 @@
+.left-area {
+    flex: 24%;
+
+    @include respond-below(md) {
+        &#hidden {
+            display: none;
+        }
+    }
+
+    .recent-chat-info {
+        width: 100%;
+        height: 100vh;
+        background: $background-default;
+        overflow-x: scroll;
+
+        @include respond-above(md) {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .recent-chat-info-top {
+            background: $panel-header-background;
+
+            .ico {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @include respond-above(md) {
+                    height: 58px;
+                    justify-content: center;
+                }
+
+                .menu-bar-icon,
+                .left-arrow-icon {
+                    font-size: 1.2rem;
+                    margin-left: 8px;
+                    cursor: pointer;
+
+                    &#hidden {
+                        display: none;
+                    }
+
+                    @include respond-above(md) {
+                        display: none;
+                    }
+                }
+
+                .search-icon {
+                    margin: 8px 20px 0 0;
+                    cursor: pointer;
+                    // height: 30px;
+                    // width: 30px;
+                    // border-radius: 20px;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    &#hidden {
+                        display: none;
+                    }
+
+                    @include respond-above(md) {
+                        display: none;
+                    }
+                }
+
+                .logo {
+                    margin-top: 4px;
+                    cursor: pointer;
+
+                    .logo-title {
+                        font-size: 1.5rem;
+                    }
+                    &#hidden {
+                        display: none;
+                    }
+                    @include respond-above(md) {
+                        display: none;
+                    }
+                }
+
+                .search-chats {
+                    width: 90%;
+                    margin-left: 8px;
+
+                    input[type="search"] {
+                        width: 90%;
+                        height: 32px;
+                        border: none;
+                        outline: none;
+                        border-radius: 7px;
+                        padding: 5px 10px;
+                        font-size: 1.2rem;
+                        background-color: transparent;
+
+                        // &::-webkit-search-cancel-button {
+                        // -webkit-appearance: none;
+                        // }
+                    }
+
+                    @include respond-below(md) {
+                        &#hidden {
+                            display: none;
+                        }
+                    }
+
+                    @include respond-between(sm, md) {
+                        input[type="search"] {
+                            width: 96%;
+                            height: 28px;
+                        }
+                    }
+
+                    @include respond-above(md) {
+                        width: 90%;
+                        margin-left: 0;
+
+                        input[type="search"] {
+                            width: 100%;
+                            height: 34px;
+                            background-color: $secondary-color;
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .menu-panel {
+            width: 100%;
+            height: 42px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: $panel-header-background;
+
+            ul {
+                height: inherit;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                overflow-x: scroll;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .menu-options {
+                    margin: 8px 12px;
+
+                    button {
+                        outline: none;
+                        border: none;
+                        background: transparent;
+                        padding: 5px 10px;
+                        padding: 6px 10px;
+                        cursor: pointer;
+                        font-size: 15px;
+                        font-weight: $font-bold;
+                        color: gray;
+                        border-radius: 3px;
+
+                        &:active {
+                            background: transparent;
+                        }
+                    }
+
+                    &.active {
+                        button {
+                            color: blue;
+                            border-bottom: 4px solid blue;
+                        }
+                    }
+                }
+            }
+
+            @include respond-above(md) {
+                display: none;
+            }
+        }
+
+        .recent-chats {
+            .private-chat {
+                width: 100%;
+                height: 80px;
+                // background: blue;
+                padding: 7px;
+                position: relative;
+                cursor: pointer;
+
+                @include respond-above(md) {
+                    height: 68px;
+                    padding: 6px;
+                }
+
+                & .active {
+                    background-color: $background-default-active;
+                }
+
+                .profile_pic {
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 30px;
+                    position: absolute;
+                    top: 0.8rem;
+                    left: 0.6rem;
+
+                    @include respond-above(md) {
+                        top: 0.4rem;
+                        left: 10px;
+                    }
+                }
+
+                .chat {
+                    // width: 82%;
+                    height: 65px;
+                    margin-left: 4rem;
+                    position: relative;
+
+                    @include respond-above(md) {
+                        height: 55px;
+                    }
+
+                    .user_name {
+                        position: absolute;
+                        top: 0.5rem;
+                        left: 0.6rem;
+                        @include respond-above(md) {
+                            top: 0.4rem;
+                            left: 0.8rem;
+                        }
+                    }
+                    .last_msg {
+                        position: absolute;
+                        bottom: 0.4rem;
+                        left: 0.7rem;
+                        @include respond-above(md) {
+                            bottom: 0.1rem;
+                            left: 0.9rem;
+                        }
+                    }
+                    .last_msg_time {
+                        position: absolute;
+                        top: 0.5rem;
+                        right: 0;
+                        @include respond-above(md) {
+                            top: 0.4rem;
+                            right: 0.5rem;
+                        }
+                    }
+                    .new_msg_count {
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50px;
+                        background-color: red;
+                        position: absolute;
+                        bottom: 0.5rem;
+                        right: 0.4rem;
+                        padding: 2px 6px;
+                        display: none;
+                        @include respond-above(md) {
+                            bottom: 0.1rem;
+                            right: 1.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

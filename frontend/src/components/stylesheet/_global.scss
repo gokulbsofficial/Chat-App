@@ -1,0 +1,32 @@
+* {
+    @include reset-list;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome and Opera */
+}
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+body {
+    font-family: $primary-font;
+    font-weight: $font-normal;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.home {
+    .main {
+        width: 100vw;
+        height: 100vh;
+    }
+}

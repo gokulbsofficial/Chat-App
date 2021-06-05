@@ -9,12 +9,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require("cors")
 const morgan = require('morgan')
+
 const app = express();
 require('colors');
 
 // Mongoose Connection
 connectDB()
-
 
 // Middleware
 if (process.env.NODE_ENV === 'development') {
@@ -27,8 +27,8 @@ app.use(bodyParser.json());
 
 // CORS
 app.use(cors({
-    origin:["http://localhost:3000","https://e6dfa130414d.ngrok.io/"],
-    credentials:true
+    origin: ["http://localhost:3000","http://localhost:3001","http://localhost:3002"],
+    credentials: true
 }))
 
 // Routes
@@ -38,7 +38,7 @@ app.use('/api/user', userRouter);
 // Static Pages
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/build")))
-    app.use('*', (req, res) => {
+    app.use('/*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     })
 } else {

@@ -1,0 +1,53 @@
+.menu-bar-icon,
+.left-arrow-icon {
+    .fa-bars,
+    .fa-arrow-left {
+        color: $resp-icon-color;
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+}
+.menu-container {
+    .icons {
+        color: $menu-color;
+        font-size: 2rem;
+    }
+    .icon-name {
+        color: #111;
+    }
+}
+
+.search-icon {
+    .fa-search {
+        color: $resp-icon-color;
+        font-size: 1.2rem;
+    }
+}
+
+.more-icon {
+    .fa-ellipsis-v {
+        color: $resp-icon-color;
+        font-size: 1.2rem;
+    }
+}
+
+.emoji-icon,
+.paper-clip,
+.microphone {
+    .fa-smile,
+    .fa-paperclip,
+    .fa-microphone {
+        color: $resp-icon-color;
+        font-size: 1.5rem;
+    }
+}
+
+.circle-icon{
+    height: 30px;
+    width: 30px;
+    margin:12px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

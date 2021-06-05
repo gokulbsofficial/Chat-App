@@ -2,13 +2,13 @@ const moongose = require("mongoose")
 
 const ConnectDB = async () => {
     try {
-        let conn = await moongose.connect(process.env.MONGO_URL, {
+        let conn = await moongose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`, {
             useCreateIndex: true,
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: true
         })
-        console.log(`MongoDb Connected : ${conn.connection.host}`.cyan.underline);
+        console.log(`MongoDb Connected in ${process.env.DB_NAME .bold} database at ${conn.connection.host .bold}:${conn.connection.port} `.cyan.underline);
     } catch (error) {
         console.error(`Error : ${error.message}`.red.underline.bold);
         process.exit(1)

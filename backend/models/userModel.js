@@ -2,98 +2,109 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const reqString = {
+    type: String,
+    required: true,
+}
+
+const accountScheme = mongoose.Schema({
+  status: {
+    type: String,
+    required: true,
+    default: "Active",
+  },
+  type: {
+    type: String,
+    required: true,
+    default: "New Account",
+  },
+});
+
+const TwoStepVerificationScheme = mongoose.Schema({
+  status: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
+  password: {
+    type: String,
+    select: false,
+  },
+  resetPasswdAccess: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+});
+
+const logsScheme = mongoose.Schema({
+  createdAt: {
+    type: String,
+    required: true,
+    default: new Date().toLocaleString(),
+  },
+  lastSync: {
+    type: String,
+    required: true,
+    default: new Date().toLocaleString(),
+  },
+  lastResetPasswd: {
+    type: String,
+    required: false,
+  },
+});
+
 const userSchema = mongoose.Schema({
-    accountType: {
-        type: String,
-        default: "New Account",
-    },
-    name: {
-        type: String,
-    },
-    userName: {
-        type: String,
-    },
-    mobile: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    status: {
-        type: String,
-        default: "Active",
-    },
-    TwoStepVerification: {
-        type: Boolean,
-        default: false,
-    },
-    email: {
-        type: String,
-    },
-    cloudPassword: {
-        type: String,
-        select: false,
-    },
-    resetCloudPasswd: {
-        type: Boolean,
-        default: false
-    },
-    profilePic: {
-        type: String,
-    },
-    createdAt: {
-        type: String,
-        required: true,
-        default: new Date().toLocaleString(),
-    },
-    lastSync: {
-        type: String,
-        required: true,
-        default: new Date().toLocaleString(),
-    },
-    groups: [
-        {
-            group: { type: mongoose.Schema.Types.ObjectId },
-        },
-    ],
-    messages: [
-        {
-            user: { type: mongoose.Schema.Types.ObjectId },
-            chats: [
-                {
-                    from: { type: mongoose.Schema.Types.ObjectId, required: true },
-                    to: { type: mongoose.Schema.Types.ObjectId, required: true },
-                    message: { type: String, required: true },
-                    time: { type: String, required: true },
-                    delete: { type: Boolean, default: false },
-                },
-            ],
-        },
-    ],
+  name: {
+    type: String,
+  },
+  userName: {
+    type: String,
+    lowercase: true,
+  },
+  mobile: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    lowercase: true,
+  },
+
+  profilePic: {
+    type: String,
+  },
+  accounts: [accountScheme],
+
+  TwoStepVerification: [TwoStepVerificationScheme],
+
+  logs: [logsScheme],
 });
 
-userSchema.pre("save", async function (next) {
-    if (!this.isModified("cloudPassword")) {
-        next();
-    }
-    const salt = await bcrypt.genSalt(10);
-    this.cloudPassword = await bcrypt.hash(this.cloudPassword, salt);
+TwoStepVerificationScheme.pre("save", async function (next) {
+  if (!this.isModified("password")) {
     next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
-userSchema.methods.matchPasswords = async function (cloudPassword) {
-    return await bcrypt.compare(cloudPassword, this.cloudPassword);
+TwoStepVerificationScheme.methods.matchPasswords = async function (password) {
+  return await bcrypt.compare(password, this.password);
 };
 
 userSchema.methods.getSignedtoken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-        expiresIn: "1y",
-    });
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "1y",
+  });
 };
 
 userSchema.methods.getRefreshtoken = function () {
-    return jwt.sign({ id: this._id }, process.env.JWT_REFRESH, {
-        expiresIn: "1y",
-    });
+  return jwt.sign({ id: this._id }, process.env.JWT_REFRESH, {
+    expiresIn: "1y",
+  });
 };
 
 const User = mongoose.model("User", userSchema);

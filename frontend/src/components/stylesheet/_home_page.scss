@@ -1,0 +1,7 @@
+.home_page{
+    .main{
+        @include respond-above(md){
+            display: flex;
+        }
+    }
+}

@@ -1,21 +1,20 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StepForm from "../StepForm";
-import PrivateRouter from "./PrivateRouter";
-import HomeScreen from "../screens/authScreens/HomeScreen";
+// import PrivateRouter from "./PrivateRouter";
+import HomeScreen from "../screens/userScreens/HomeScreen";
 import ResetCloudPasswdScreen from "../screens/authScreens/ResetCloudPasswdScreen";
-import axios from "axios";
-
-axios.defaults.baseURL = "http://localhost:5000";
-axios.defaults.withCredentials = true;
-axios.defaults.headers.post["Content-Type"] = "application/json";
+import AdminPanel from "../screens/adminScreens/AdminPanel";
 
 const Routers = () => {
     return (
         <Router>
             <Switch>
-                <PrivateRouter path="/" exact>
+                <Route path="/" exact>
                     <HomeScreen />
-                </PrivateRouter>
+                </Route>
+                <Route path="/admin" exact>
+                    <AdminPanel />
+                </Route>
                 <Route path="/login" exact>
                     <StepForm />
                 </Route>

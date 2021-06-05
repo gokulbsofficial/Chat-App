@@ -1,0 +1,35 @@
+.menu-area {
+    flex:2%;
+    @include respond-below(md) {
+        display: none;
+    }
+
+    .menu-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include respond-above(md) {
+            background-color: $primary-color;
+            .menu-bar-icon {
+                cursor: pointer;
+                .fa-bars {
+                    color: #eee;
+                    display: block;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+        .menu-icons {
+            cursor: pointer;
+            width: 100%;
+            height: 4.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    }
+}
