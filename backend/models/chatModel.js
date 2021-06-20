@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 
-const authorScheme = mongoose.Schema({
-  id: {
-    type: mongoose.Types.ObjectId,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-});
-
 const messageScheme = mongoose.Schema({
-  author: [authorScheme],
+  author: {
+    id: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+  },
 
   msg: {
     type: String,
@@ -32,7 +30,16 @@ const messageScheme = mongoose.Schema({
 });
 
 const fileScheme = mongoose.Schema({
-  author: [authorScheme],
+  author: {
+    id: {
+      type: mongoose.Types.ObjectId,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+  },
 
   filePath: {
     type: String,
@@ -41,7 +48,7 @@ const fileScheme = mongoose.Schema({
 
   fileName: {
     type: String,
-    required: true
+    required: true,
   },
 
   deleted: {
@@ -56,14 +63,12 @@ const fileScheme = mongoose.Schema({
   },
 });
 
-const deletedUsersScheme = mongoose.Schema(
-    {
-        userId:{
-            type: mongoose.Types.ObjectId,
-            required: false, 
-        }
-    }
-);
+const deletedUsersScheme = mongoose.Schema({
+  userId: {
+    type: mongoose.Types.ObjectId,
+    required: false,
+  },
+});
 
 const participantsScheme = mongoose.Schema({
   senderId: {
@@ -76,21 +81,33 @@ const participantsScheme = mongoose.Schema({
   },
 });
 
-const chatSchema = mongoose.Schema({
-  inboxHash: {
-    type: String,
-    required: true,
+const chatSchema = mongoose.Schema(
+  {
+    inboxHash: {
+      type: String,
+      required: true,
+    },
+
+    participants: {
+      senderId: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+      },
+      receiverId: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+      },
+    },
+
+    message: [messageScheme],
+
+    file: [fileScheme],
+
+    deletedUserId: [deletedUsersScheme],
   },
-
-  participants: [participantsScheme],
-
-  message: [messageScheme],
-
-  file: [fileScheme],
-
-  deletedUserId: [deletedUsersScheme],
-
-  // timestamp: true,
-});
+  {
+    timestamp: true,
+  }
+);
 
 module.exports = mongoose.model("Chats", chatSchema);

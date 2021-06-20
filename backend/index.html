@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button type="button" onclick="handleChange()">Sent</button>
+    <button type="button" onclick="handleChange1()">Verify</button>
+    <button type="button" onclick="handleChange2()">Profile</button>
+    <button type="button" onclick="handleChange3()">Password</button>
+    <button type="button" onclick="handleChange4()">Forget Password</button>
+    <button type="button" onclick="handleChange5()">Reset Password</button>
+    <button type="button" onclick="handleChange6()">Refresh Token</button>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io("/auth");
+
+    const handleChange = () => {
+      socket.emit("sent-otp", {
+        mobile: "918870780689",
+      });
+    };
+    socket.on("sent-otp", (data) => {
+      console.log(data);
+    });
+
+    const handleChange1 = () => {
+      socket.emit("verify-otp", {
+        mobile: "918870780689",
+        code: "797778",
+      });
+    };
+    socket.on("verify-otp", (data) => {
+      console.log(data);
+    });
+
+    const handleChange2 = () => {
+      io.of("/users").emit("login-profile", {
+        mobile: "918870780689",
+        name: "Gokul",
+        userName: "gokul",
+      });
+    };
+    socket.on("login-profile", (data) => {
+      console.log(data);
+    });
+
+    const handleChange3 = () => {
+      socket.emit("cloud-password", {
+        mobile: "918870780689",
+        password: "1234",
+      });
+    };
+    socket.on("cloud-password", (data) => {
+      console.log(data);
+    });
+
+    const handleChange4 = () => {
+      socket.emit("forget-password", {
+        email: "gokul@gmail.com",
+      });
+    };
+    socket.on("forget-password", (data) => {
+      console.log(data);
+    });
+
+    const handleChange5 = () => {
+      socket.emit("reset-password", {
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYmM5NjRkOGQ0NWJiNWY5ZjRmZTNmZiIsImlhdCI6MTYyMjk4MjI4NCwiZXhwIjoxNjU0NTM5ODg0fQ.iHC7MPYmcdOZZ-V2JFrNTR1m7YFT445-29NWt6EvDzo",
+        password: "123",
+      });
+    };
+    socket.on("reset-password", (data) => {
+      console.log(data);
+    });
+
+    const handleChange6 = () => {
+      socket.emit("refresh-token", {
+        refreshToken: "token",
+      });
+    };
+    socket.on("refresh-token", (data) => {
+      console.log(data);
+    });
+
+    const handleChange7 = () => {
+      socket.emit("logout", {
+        logout: "",
+      });
+    };
+    socket.on("logout", (data) => {
+      console.log(data);
+    });
+    socket.on("error", (err) => {
+      console.log(err); // { content: "Please retry later" }
+    });
+  </script>
+</html>

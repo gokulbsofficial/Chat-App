@@ -4,15 +4,15 @@ import { useParams } from 'react-router-dom'
 import Loader from '../../Loader'
 import Message from '../../Message'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetCloudPasswd } from "../../../actions/authAction";
+import { resetPassword } from "../../../actions/authAction";
 
-export const ResetCloudPasswdScreen = (props) => {
+export const ResetPasswordScreen = (props) => {
 
     const { token } = useParams()
 
     const [value, setValue] = useState({
-        newCloudPassword: "",
-        confirmNewCloudPassword: "",
+        newPassword: "",
+        confirmNewPassword: "",
         resetToken: `${token}`
     })
 
@@ -26,8 +26,8 @@ export const ResetCloudPasswdScreen = (props) => {
 
     const Continue = async (e) => {
         e.preventDefault();
-        if (value.newCloudPassword !== value.confirmNewCloudPassword) {
-            dispatch(resetCloudPasswd(value.resetToken, value.newCloudPassword))
+        if (value.newPassword !== value.confirmNewPassword) {
+            dispatch(resetPassword(value.resetToken, value.newPassword))
         }
     }
     return (
@@ -39,13 +39,13 @@ export const ResetCloudPasswdScreen = (props) => {
 
                         <h2 className="mb-5 font-weight-normal "> <strong>Reset Cloud Password</strong></h2>
 
-                        <Form.Group controlId="newCloudPassword" className="mt-2 mb-3">
-                            <Form.Control name="newCloudPassword" type="password" placeholder="New Cloud Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.newCloudPassword} />
+                        <Form.Group controlId="newPassword" className="mt-2 mb-3">
+                            <Form.Control name="newPassword" type="password" placeholder="New Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.newPassword} />
                         </Form.Group>
 
 
-                        <Form.Group controlId="confirmNewCloudPassword" className="mt-2 mb-3">
-                            <Form.Control name="confirmNewCloudPassword" type="password" placeholder="Confirm Cloud Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.confirmNewCloudPassword} />
+                        <Form.Group controlId="confirmNewPassword" className="mt-2 mb-3">
+                            <Form.Control name="confirmNewPassword" type="password" placeholder="Confirm Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.confirmNewPassword} />
                         </Form.Group>
 
                         <Button
@@ -60,4 +60,4 @@ export const ResetCloudPasswdScreen = (props) => {
     )
 }
 
-export default ResetCloudPasswdScreen
+export default ResetPasswordScreen

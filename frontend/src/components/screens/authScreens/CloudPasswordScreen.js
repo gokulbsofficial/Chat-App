@@ -14,7 +14,7 @@ const CloudPasswordScreen = (props) => {
 
     const Continue = async (e) => {
         e.preventDefault();
-        dispatch(cloudPassword(value.mobile, value.cloudPassword))
+        dispatch(cloudPassword(value.mobile, value.password))
     }
     return (
         <Fragment>
@@ -26,7 +26,7 @@ const CloudPasswordScreen = (props) => {
                         <h2 className="mb-5 font-weight-normal "> <strong>Cloud Password</strong></h2>
 
                         <Form.Group controlId="formBasicPassword" className="mt-2 mb-3">
-                            <Form.Control name="cloudPassword" type="password" placeholder="Cloud Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.cloudPassword} />
+                            <Form.Control name="password" type="password" placeholder="Cloud Password" onChange={(e) => handleChange(e.target.name, e.target.value)} value={value.password} />
                         </Form.Group>
 
                         <Button

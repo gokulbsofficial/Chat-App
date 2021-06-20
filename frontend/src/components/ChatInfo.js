@@ -1,7 +1,7 @@
 function ChatInfo() {
     return (
             <div className="right-area">
-                <div className="chat-info">
+                <div className="chat-info" id="hidden">
                     <div className="chat-info-top">
                         <div className="back-btn">
                             <div className="left-arrow-icon">

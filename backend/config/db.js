@@ -6,7 +6,7 @@ const ConnectDB = async () => {
             useCreateIndex: true,
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: true
+            useFindAndModify: false
         })
         console.log(`MongoDb Connected in ${process.env.DB_NAME .bold} database at ${conn.connection.host .bold}:${conn.connection.port} `.cyan.underline);
     } catch (error) {

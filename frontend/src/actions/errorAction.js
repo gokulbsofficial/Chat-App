@@ -1,14 +1,15 @@
-import { GET_ERRORS, CLEAR_ERRORS } from '../constants/errorConstants'
+import { GET_ERRORS, CLEAR_ERRORS } from "../constants/errorConstants";
 
-export const retrunErrors = (msg, status, id = null) => {
+export const retrunErrors =
+  (msg = `Try again!!! `, statusCode = null , id = null) => {
     return {
-        type: GET_ERRORS,
-        payload: { msg, status, id }
-    }
-}
+      type: GET_ERRORS,
+      payload: { msg, statusCode, id },
+    };
+  };
 
 export const clearErrors = () => {
-    return {
-        type:CLEAR_ERRORS
-    }
-}
+  return {
+    type: CLEAR_ERRORS,
+  };
+};

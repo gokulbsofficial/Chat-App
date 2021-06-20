@@ -10,7 +10,7 @@
     .recent-chat-info {
         width: 100%;
         height: 100vh;
-        background: $background-default;
+        background: $inbox-background;
         overflow-x: scroll;
 
         @include respond-above(md) {
@@ -23,7 +23,7 @@
         }
 
         .recent-chat-info-top {
-            background: $panel-header-background;
+            // background: $inbox-menu-background-color;
 
             .ico {
                 width: 100%;
@@ -93,16 +93,21 @@
                     input[type="search"] {
                         width: 90%;
                         height: 32px;
-                        border: none;
+                        border: $inbox-search-border-color;
                         outline: none;
                         border-radius: 7px;
                         padding: 5px 10px;
                         font-size: 1.2rem;
-                        background-color: transparent;
+                        color: $inbox-search-color;
+                        background-color: $inbox-search-background-color;
 
                         // &::-webkit-search-cancel-button {
                         // -webkit-appearance: none;
                         // }
+
+                        &:active{
+                            border: inbox-search-border-color-active;   
+                        }
                     }
 
                     @include respond-below(md) {
@@ -125,7 +130,7 @@
                         input[type="search"] {
                             width: 100%;
                             height: 34px;
-                            background-color: $secondary-color;
+                            background-color: $inbox-search-background-color;
                             font-size: 1rem;
                         }
                     }
@@ -139,7 +144,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
-            background: $panel-header-background;
+            background: $menu-icon-color;
 
             ul {
                 height: inherit;
@@ -189,10 +194,11 @@
         }
 
         .recent-chats {
+            background-color: $inbox-chat-background;
+            height: calc(100vh - 58px);
             .private-chat {
                 width: 100%;
                 height: 80px;
-                // background: blue;
                 padding: 7px;
                 position: relative;
                 cursor: pointer;
@@ -202,8 +208,12 @@
                     padding: 6px;
                 }
 
-                & .active {
-                    background-color: $background-default-active;
+                &.active {
+                    background-color: $inbox-chat-background-active;
+                }
+
+                &:hover {
+                    background-color: $inbox-chat-background-hover;
                 }
 
                 .profile_pic {
@@ -222,36 +232,56 @@
 
                 .chat {
                     // width: 82%;
-                    height: 65px;
+                    height: inherit;
                     margin-left: 4rem;
                     position: relative;
+                    border-bottom:2px solid $inbox-chat-border-color;
 
                     @include respond-above(md) {
-                        height: 55px;
+                        // height: 55px;
+                    }
+
+                    &.active{
+                        .user_name {
+                            color: $inbox-name-color-active;
+                        }
+                        .last_msg {
+                            color:$inbox-msg-color-active;
+                        }
+                        .last_msg_time {
+                            color: $inbox-time-color-active;
+                        }
+                        .new_msg_count {
+                            color: $inbox-unseen-count-color-active;
+                            background-color: $inbox-unseen-count-background-active;
+                        }
                     }
 
                     .user_name {
                         position: absolute;
-                        top: 0.5rem;
-                        left: 0.6rem;
+                        top: 0.8rem;
+                        left: 0.4rem;
+                        color: $inbox-name-color;
                         @include respond-above(md) {
                             top: 0.4rem;
-                            left: 0.8rem;
+                            left: 0.4rem;
                         }
                     }
                     .last_msg {
                         position: absolute;
-                        bottom: 0.4rem;
-                        left: 0.7rem;
+                        bottom: 1.3rem;
+                        left: 0.45rem;
+                        color: $inbox-msg-color;
                         @include respond-above(md) {
-                            bottom: 0.1rem;
-                            left: 0.9rem;
+                            bottom: 0.9rem;
+                            left: 0.45rem;
                         }
                     }
                     .last_msg_time {
                         position: absolute;
-                        top: 0.5rem;
-                        right: 0;
+                        top: 0.3rem; 
+                        right: 0rem;
+                        color: $inbox-time-color;
                         @include respond-above(md) {
                             top: 0.4rem;
                             right: 0.5rem;
@@ -261,14 +291,18 @@
                         width: 20px;
                         height: 20px;
                         border-radius: 50px;
-                        background-color: red;
+                        background-color: $inbox-unseen-count-background;
                         position: absolute;
-                        bottom: 0.5rem;
+                        bottom: 1.2rem;
                         right: 0.4rem;
                         padding: 2px 6px;
-                        display: none;
+                        color: $inbox-unseen-count-color;
+
+                        &#hidden {
+                            display: none;
+                        }
                         @include respond-above(md) {
-                            bottom: 0.1rem;
+                            bottom: 0.9rem;
                             right: 1.8rem;
                         }
                     }

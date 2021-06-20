@@ -2,14 +2,14 @@
 .left-arrow-icon {
     .fa-bars,
     .fa-arrow-left {
-        color: $resp-icon-color;
+        color: $icon-color;
         font-size: 1.2rem;
         padding: 15px;
     }
 }
 .menu-container {
     .icons {
-        color: $menu-color;
+        color: $icon-color;
         font-size: 2rem;
     }
     .icon-name {
@@ -19,14 +19,14 @@
 
 .search-icon {
     .fa-search {
-        color: $resp-icon-color;
+        color: $icon-color;
         font-size: 1.2rem;
     }
 }
 
 .more-icon {
     .fa-ellipsis-v {
-        color: $resp-icon-color;
+        color: $icon-color;
         font-size: 1.2rem;
     }
 }
@@ -37,7 +37,7 @@
     .fa-smile,
     .fa-paperclip,
     .fa-microphone {
-        color: $resp-icon-color;
+        color: $icon-color;
         font-size: 1.5rem;
     }
 }

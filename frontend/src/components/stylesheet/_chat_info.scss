@@ -12,7 +12,7 @@
         .chat-info-top {
             width: 100%;
             height: 58px;
-            background-color: $chat-top-bottom;
+            background-color: $chat-info-background;
             display: flex;
             align-items: center;
 
@@ -57,12 +57,14 @@
                     position: absolute;
                     top: 0.6rem;
                     left: 0.6rem;
+                    color: $chat-user-name-color;
                 }
 
                 .group-members {
                     position: absolute;
                     bottom: 0.2rem;
                     left: 0.66rem;
+                    color: $chat-status-color;
                 }
             }
 
@@ -89,9 +91,8 @@
             width: 100%;
             height: calc(100vh - 116px);
             overflow-x: hidden;
-            overflow-y:auto;
+            overflow-y: auto;
             background-image: url(https://s-media-cache-ak0.pinimg.com/originals/51/ed/c0/51edc046eb80046ee4755ee71d0f19ca.jpg);
-
 
             .msg {
                 position: relative;
@@ -101,7 +102,7 @@
                 max-width: 45%;
                 background: #eeeeee;
                 border-radius: 7px;
-                clear: both;	
+                clear: both;
                 padding: 25px;
                 padding-bottom: 35px;
                 margin: 20px 15px;
@@ -111,34 +112,34 @@
                     margin-bottom: 20px;
                 }
 
-                .timestamp{
+                .timestamp {
                     display: block;
                     position: absolute;
                     right: 10px;
                     bottom: 6px;
-                    color: #AAA;
+                    color: #aaa;
 
-                    .readed{
-                        color:green;
+                    .readed {
+                        color: green;
                     }
                 }
-
             }
-            .msgSent{
+            .msgSent {
                 float: right;
-                background-color: $outgoing-message-background;
+                background-color: $chat-sender-background;
+                color: $chat-sender-color;
             }
-            .msgReceived{
+            .msgReceived {
                 float: left;
-                background-color: $incoming-message-background;
+                background-color: $chat-receiver-background;
+                color: $chat-receiver-color;
             }
-
         }
 
         .chat-info-bottom {
             width: 100%;
             height: 58px;
-            background-color: $chat-top-bottom;
+            background-color: $chat-info-background;
             display: flex;
             align-items: center;
 

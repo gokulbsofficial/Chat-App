@@ -6,9 +6,8 @@ const {
   getChats,
   createInbox,
 } = require("../controller/userController");
-const { protect } = require("../middleware/authMiddleware");
 
-router.route("/").get(protect, findUser);
+router.route("/").get(findUser);
 
 router.route("/inboxes").get(getInboxes);
 

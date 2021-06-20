@@ -2,7 +2,7 @@ import React from 'react'
 
 function ResentChat() {
     return (
-        <div className="left-area" id="hidden">
+        <div className="left-area" >
                 <div className="recent-chat-info">
 
                     <div className="recent-chat-info-top">

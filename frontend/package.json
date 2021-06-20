@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
-  "proxy": "http://127.0.0.1:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -22,6 +21,7 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^4.1.2",
     "thunk": "^0.0.1",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.0.1"

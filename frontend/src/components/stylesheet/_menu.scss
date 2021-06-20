@@ -12,11 +12,11 @@
         align-items: center;
 
         @include respond-above(md) {
-            background-color: $primary-color;
+            background-color: $menu-background;
             .menu-bar-icon {
                 cursor: pointer;
                 .fa-bars {
-                    color: #eee;
+                    color: $menu-icon-color;
                     display: block;
                     font-size: 1.4rem;
                 }
@@ -30,6 +30,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            color: $menu-icon-color;
         }
     }
 }

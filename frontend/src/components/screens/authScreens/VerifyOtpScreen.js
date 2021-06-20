@@ -5,7 +5,6 @@ import Message from '../../Message'
 import OtpInput from "react-otp-input";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyOtp,sentOtp,mobilePage } from "../../../actions/authAction";
-import { useHistory } from 'react-router-dom'
 
 
 const VerifyOtpScreen = (props) => {
@@ -15,11 +14,10 @@ const VerifyOtpScreen = (props) => {
     const {authInfo} = useSelector(state => state)
     const { loading, error } = authInfo
     const dispatch = useDispatch()
-    const history = useHistory()
 
     const confirmOTP = (e) => {
         e.preventDefault();
-        dispatch(verifyOtp(value.mobile, value.otp, history))
+        dispatch(verifyOtp(value.mobile, value.otp))
     }
     const Back = (e) => {
         e.preventDefault();
