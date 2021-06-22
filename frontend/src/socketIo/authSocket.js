@@ -115,3 +115,7 @@ export const refreshTokenScoket = () => {
 export const disconnectAuthScoket = () => {
     socket.emit("disconnect-auth");
 };
+
+// socket.on("error",()=>{
+
+// })

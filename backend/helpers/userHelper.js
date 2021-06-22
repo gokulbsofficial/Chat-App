@@ -13,7 +13,7 @@ exports.setUserStatus = (user, status) => {
   if (status === "isTyping") {
     status = `typing...`;
   }
-  console.log(user);
+
   User.findOneAndUpdate({ _id: user._id }, { userStatus: status }, (err,doc) => {
     if (err) {
       console.log(error.message);

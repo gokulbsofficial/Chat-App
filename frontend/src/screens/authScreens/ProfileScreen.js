@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { Form, Button, ButtonGroup } from "react-bootstrap";
-import Loader from "../../Loader";
-import Message from "../../Message";
+import { Form, Button } from "react-bootstrap";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 import { useDispatch, useSelector } from "react-redux";
-import { loginProfile } from "../../../actions/authAction";
+import { loginProfile } from "../../actions/authAction";
 
 const ProfileScreen = (props) => {
   const { value, handleChange } = props;

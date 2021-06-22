@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import MenuArea from "../../MenuArea";
-import ResentChat from "../../ResentChat";
-import ChatInfo from "../../ChatInfo";
+import MenuArea from "../../components/MenuArea";
+import ResentChat from "../../components/ResentChat";
+import ChatInfo from "../../components/ChatInfo";
 // import { checkRefreshToken } from "../../../actions/authAction";
 import {
   getUserAction,
   makeConnectUserSocket,
-} from "../../../actions/userActions";
+} from "../../actions/userActions";
 
 import { useDispatch, useSelector } from "react-redux";
 

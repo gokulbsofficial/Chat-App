@@ -23,7 +23,11 @@
         }
 
         .recent-chat-info-top {
-            // background: $inbox-menu-background-color;
+            background: $inbox-menu-background;
+            @include respond-above(md) {
+                background: transparent; 
+            }
+
 
             .ico {
                 width: 100%;
@@ -99,7 +103,11 @@
                         padding: 5px 10px;
                         font-size: 1.2rem;
                         color: $inbox-search-color;
-                        background-color: $inbox-search-background-color;
+                        background: $inbox-search-background;
+
+                        &::placeholder{
+                            color: $inbox-search-placeholder-color;
+                        }
 
                         // &::-webkit-search-cancel-button {
                         // -webkit-appearance: none;
@@ -130,7 +138,7 @@
                         input[type="search"] {
                             width: 100%;
                             height: 34px;
-                            background-color: $inbox-search-background-color;
+                            background: $inbox-search-background;
                             font-size: 1rem;
                         }
                     }
@@ -144,7 +152,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
-            background: $menu-icon-color;
+            background: $inbox-folder-background;
 
             ul {
                 height: inherit;
@@ -171,7 +179,7 @@
                         cursor: pointer;
                         font-size: 15px;
                         font-weight: $font-bold;
-                        color: gray;
+                        color:  $inbox-folder-color;
                         border-radius: 3px;
 
                         &:active {
@@ -181,8 +189,8 @@
 
                     &.active {
                         button {
-                            color: blue;
-                            border-bottom: 4px solid blue;
+                            color: $inbox-folder-color-active;
+                            border-bottom: 4px solid $inbox-folder-border-color;
                         }
                     }
                 }
@@ -194,7 +202,7 @@
         }
 
         .recent-chats {
-            background-color: $inbox-chat-background;
+            background-color: $inbox-background;
             height: calc(100vh - 58px);
             .private-chat {
                 width: 100%;
@@ -202,6 +210,7 @@
                 padding: 7px;
                 position: relative;
                 cursor: pointer;
+                background:  $inbox-chat-background;
 
                 @include respond-above(md) {
                     height: 68px;
@@ -209,11 +218,11 @@
                 }
 
                 &.active {
-                    background-color: $inbox-chat-background-active;
+                    background: $inbox-chat-background-active;
                 }
 
                 &:hover {
-                    background-color: $inbox-chat-background-hover;
+                    background: $inbox-chat-background-hover;
                 }
 
                 .profile_pic {
@@ -235,7 +244,7 @@
                     height: inherit;
                     margin-left: 4rem;
                     position: relative;
-                    border-bottom:2px solid $inbox-chat-border-color;
+                    border-bottom:2px solid   $inbox-chat-border-color;
 
                     @include respond-above(md) {
                         // height: 55px;
@@ -253,7 +262,7 @@
                         }
                         .new_msg_count {
                             color: $inbox-unseen-count-color-active;
-                            background-color: $inbox-unseen-count-background-active;
+                            background: $inbox-unseen-count-background-active;
                         }
                     }
 

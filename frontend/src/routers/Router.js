@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import StepForm from "../StepForm";
+import StepForm from "../components/StepForm";
 import PrivateRouter from "./PrivateRouter";
 import HomeScreen from "../screens/userScreens/HomeScreen";
 import ResetPasswordScreen from "../screens/authScreens/ResetPasswordScreen";

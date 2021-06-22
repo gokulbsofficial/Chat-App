@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { Form, Button } from "react-bootstrap";
-import Loader from '../../Loader'
-import Message from '../../Message'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 import { useDispatch, useSelector } from 'react-redux'
-import { cloudPassword } from "../../../actions/authAction";
+import { cloudPassword } from "../../actions/authAction";
 
 const CloudPasswordScreen = (props) => {
     const { value, handleChange } = props

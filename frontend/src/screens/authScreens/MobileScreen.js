@@ -2,9 +2,9 @@ import { Fragment } from "react";
 import { Form, Button } from "react-bootstrap";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Loader from "../../Loader";
-import Message from "../../Message";
-import { sentOtp } from "../../../actions/authAction";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
+import { sentOtp } from "../../actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
 import "../style";
 

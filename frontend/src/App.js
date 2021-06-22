@@ -1,4 +1,4 @@
-import Router from "./components/routers/Router";
+import Router from "./routers/Router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 import { Provider } from "react-redux";

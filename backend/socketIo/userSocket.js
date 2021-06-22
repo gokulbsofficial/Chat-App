@@ -15,7 +15,6 @@ const userSocket = (io) => {
 
     socket.on("get-user", () => {
       let user = socket.user || null;
-      console.log(user);
       userHelper
         .getUser(user)
         .then((response) => {

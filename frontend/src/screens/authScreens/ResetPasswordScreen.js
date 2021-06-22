@@ -1,10 +1,10 @@
 import { Fragment, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useParams } from 'react-router-dom'
-import Loader from '../../Loader'
-import Message from '../../Message'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetPassword } from "../../../actions/authAction";
+import { resetPassword } from "../../actions/authAction";
 
 export const ResetPasswordScreen = (props) => {
 

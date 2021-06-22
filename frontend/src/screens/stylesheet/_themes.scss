@@ -1,0 +1,262 @@
+// // Whatsapp Dark
+// $wa1-background-default-alt: #2a2f32;
+// $wa1-inbox-menu-icon-color: #b1b3b5;
+// $wa1-inbox-search-font-color: #6f7374;
+// $wa1-inbox-search-background-color: #323739;
+// $wa1-inbox-chat-color: #131b21;
+// $wa1-inbox-chat-color-active: #323739;
+// $wa1-inbox-chat-color-hover: #2d3134;
+// $wa1-inbox-chat-border-color: #30373e;
+// $wa1-inbox-icon-color: #777c7e;
+// $wa1-inbox-pin-icon: #484e53;
+// $wa1-inbox-unseen-count-background: #00b89f;
+// $wa1-inbox-unseen-count-color: #000;
+// $wa1-inbox-scroll-color: #394045;
+// $wa1-chat-sender-background: #006464;
+// $wa1-chat-receiver-background: #262c31;
+// $wa1-chat-sender-color: #c4c4c4;
+// $wa1-chat-receiver-color: #c4c4c4;
+
+// // Telegram Dark Theme
+// $tg1-primary-color: #18191D; //
+// $tg1-secondary-color: #3D444B; //
+// $tg1-background-default: #ffffff;
+// $tg1-icon-color: #787979;//
+// $tg1-text-color: #222222;
+// $tg1-text-color-alt: #bbbbbb;
+// $tg1-theme-color: #3A4047;
+// $tg1-menu-icon-color: #8D939E;//
+// $tg1-menu-icon-active-color: #5eb5f7;//
+// $tg1-menu-icon-active-background: #449BF1;//
+// $tg1-inbox-background: #18191D;//
+// $tg1-inbox-search-background-color: #3D444B;//
+// $tg1-inbox-search-color: #222222;
+// $tg1-inbox-search-placeholder-color: #a49ca0;
+// $tg1-inbox-search-border-color: transparent;
+// $tg1-inbox-search-border-color-active: #1e8ed6;
+// $tg1-inbox-chat-background-active: #1966B3; //
+// $tg1-inbox-chat-background: transparent;
+// $tg1-inbox-chat-background-hover:#33393F ; //
+// $tg1-inbox-chat-border-color: transparent;
+// $tg1-inbox-icon-color: #777c7e;
+// $tg1-inbox-icon-color-active: #c6e1f7;
+// $tg1-inbox-name-color: #222222;
+// $tg1-inbox-name-color-active: #f7e6e9;
+// $tg1-inbox-time-color: #bbbbbb;
+// $tg1-inbox-time-color-active: #c9e4f4;
+// $tg1-inbox-msg-color: #B4DFCC;//
+// $tg1-inbox-msg-color-active: #EBDED6; //
+// $tg1-inbox-msg-sender-name-color: #5c95dc;
+// $tg1-inbox-msg-sender-name-color-active: #c9e4f4;
+// $tg1-inbox-pin-icon-color: #c6e1f7;
+// $tg1-inbox-pin-icon-color-active: #bbbbbb;
+// $tg1-inbox-unseen-count-background: #bbbbbb;
+// $tg1-inbox-unseen-count-background-active: #ffffff;
+// $tg1-inbox-unseen-count-color: #f9ebf0;
+// $tg1-inbox-unseen-count-color-active: #c6e2f4;
+// $tg1-inbox-scroll-color: gray;
+// $tg1-chat-sender-background: #effdde;
+// $tg1-chat-receiver-background: #effdde;
+// $tg1-chat-sender-color: $tg2-secondary-color;
+// $tg1-chat-receiver-color: $tg2-secondary-color;
+// $tg1-chat-info-background: #ffffff;
+// $tg1-chat-user-name-color: #222222;
+// $tg1-chat-status-color: #bbbbbb;
+
+// // Telegram Light Theme
+// $tg2-primary-color: #419fd9; //
+// $tg2-secondary-color: #222222; //
+// $tg2-icon-color: #a8a8a8; //
+// $tg2-text-color: #222222; //
+// $tg2-text-color-alt: #bbbbbb; //
+// $tg2-background-default: #ffffff; //
+// $tg2-theme-color: #f1f1f1; //
+// $tg2-menu-icon-color: #8393a3; //
+// $tg2-menu-icon-active-color: #5eb5f7; //
+// $tg2-menu-icon-active-background: #16212a; //
+// $tg2-menu-background: #293a4c; //
+// $inbox-menu-icon-color:;
+// $tg1-inbox-background: #ffffff;//
+// $tg2-inbox-search-background-color: #f1f1f1; //
+// $tg2-inbox-search-color: #222222; //
+// $tg2-inbox-search-placeholder-color: #a49ca0; //
+// $tg2-inbox-search-border-color: transparent; //
+// $tg2-inbox-search-border-color-active: #1e8ed6; //
+// $tg2-inbox-chat-background-active: #419fd9; //
+// $tg2-inbox-chat-background: transparent; //
+// $tg2-inbox-chat-background-hover: #f1f1f1; //
+// $tg2-inbox-chat-border-color: transparent; //
+// $tg2-inbox-icon-color: #777c7e; //
+// $tg2-inbox-icon-color-active: #c6e1f7; //
+// $tg2-inbox-name-color: #222222; //
+// $tg2-inbox-name-color-active: #f7e6e9; //
+// $tg2-inbox-time-color: #bbbbbb; //
+// $tg2-inbox-time-color-active: #c9e4f4; //
+// $tg2-inbox-msg-color: #bbbbbb; //
+// $tg2-inbox-msg-color-active: #c9e4f4; //
+// $tg2-inbox-msg-sender-name-color: #5c95dc; //
+// $tg2-inbox-msg-sender-name-color-active: #c9e4f4; //
+// $tg2-inbox-pin-icon-color: #c6e1f7; //
+// $tg2-inbox-pin-icon-color-active: #bbbbbb; //
+// $tg2-inbox-unseen-count-background: #bbbbbb; //
+// $tg2-inbox-unseen-count-background-active: #ffffff; //
+// $tg2-inbox-unseen-count-color: #f9ebf0; //
+// $tg2-inbox-unseen-count-color-active: #c6e2f4; //
+// $tg2-inbox-scroll-color: gray; //
+// $tg2-chat-sender-background: #effdde; //
+// $tg2-chat-receiver-background: #effdde; //
+// $tg2-chat-sender-color: $tg2-secondary-color; //
+// $tg2-chat-receiver-color: $tg2-secondary-color; //
+// $tg2-chat-info-background: #ffffff; //
+// $tg2-chat-user-name-color: #222222; //
+// $tg2-chat-status-color: #bbbbbb; //
+
+// // Telegram Dark Theme
+$primary-color: #64b5ef;
+$secondary-color: #3d444b;
+$background-default: #ffffff;
+$icon-color: #7d8b99; //
+$icon-color-alt: #ffffff; //
+$text-color: #222222;
+$text-color-alt: #bbbbbb;
+$theme-color: #3a4047;
+$menu-icon-color: #ffffff;
+$menu-icon-color-active: #64b5ef;
+$menu-folder-background: #212d3b; //
+$menu-folder-background-active: #212d3b; //
+$menu-folder-color: #8b97a2; //
+$menu-folder-color-active: #6abfff;
+$inbox-menu-background: #212d3b; //
+$inbox-menu-color: #ffffff; //
+$inbox-menu-icon: #ffffff; //
+$inbox-search-icon: #ffffff; //
+$inbox-search-background: transparent; //
+$inbox-search-color: #ffffff; //
+$inbox-search-placeholder-color: #7d8b99; //
+$inbox-search-border-color: transparent; //
+$inbox-search-border-color-active: transparent; //
+$inbox-folder-background: #212d3b; //
+$inbox-folder-background-active: #212d3b; //
+$inbox-folder-color: #8b97a2; //
+$inbox-folder-color-active: #6abfff; //
+$inbox-folder-border-color: #64adff; //
+$inbox-folder-option-background: #293849; //
+$inbox-folder-option-icon-color: #8b9baa; //
+$inbox-folder-option-color: #ffffff; //
+$inbox-background: #1d2733; //
+$inbox-chat-background-active: #223346;
+$inbox-chat-background: transparent; //
+$inbox-chat-background-hover: #33393f;
+$inbox-chat-border-color: transparent;
+$inbox-chat-icon-color: #586d80; //
+$inbox-chat-icon-color-active: $inbox-chat-icon-color; //
+$inbox-name-color: #ffffff; //
+$inbox-name-color-active: $inbox-name-color; //
+$inbox-time-color: #737f8b; //
+$inbox-time-color-active: $inbox-time-color; //
+$inbox-msg-color: #7d8b99; //
+$inbox-msg-color-active: $inbox-msg-color; //
+$inbox-msg-color-seen: #64afe9; //
+$inbox-msg-sender-name-color: #e9eef4; //
+$inbox-msg-sender-name-color-active: $inbox-msg-sender-name-color; //
+$inbox-pin-icon-color: #586d80;
+$inbox-pin-icon-color-active: $inbox-pin-icon-color;
+$inbox-unseen-count-background: #64b5ef; //
+$inbox-unseen-count-background-active: $inbox-unseen-count-background; //
+$inbox-unseen-count-color: #ffffff; //
+$inbox-unseen-count-color-active: $inbox-unseen-count-color; //
+$inbox-scroll-color: #151c25; //
+$chat-sender-background: #3e618a; //
+$chat-receiver-background: #232e3b; //
+$chat-sender-color: #fafafa; //
+$chat-receiver-color: #fafafa; //
+$chat-info-background: #151e27; //
+$chat-info-top-background: #212d3b; //
+$chat-info-bottom-background: #212d3b; //
+$chat-info-top-icons-color: #ffffff; //
+$chat-info-bottom-icons-color: #6b7a8c; //
+$chat-info-icons-background-hover: #151e27; //
+$chat-user-name-color: #ffffff; //
+$chat-status-color: #8b97a2; //
+$chat-info-input-placholder: #6a7d90; //
+$chat-info-input-backgroud: transparent; //
+$chat-info-input-color: #ffffff; //
+$chat-info-input-border: none; //
+$chat-info-broadcast-background: #25313c; //
+$chat-info-broadcast-color: #ffffff; //
+
+@include respond-above(md) {
+    // // Telegram Dark Theme
+    $primary-color: #64b5ef;
+    $secondary-color: #3d444b;
+    $background-default: #ffffff;
+    $icon-color: #7d8b99; //
+    $icon-color-alt: #ffffff; //
+    $text-color: #222222;
+    $text-color-alt: #bbbbbb;
+    $theme-color: #3a4047;
+    $menu-icon-color: #ffffff;
+    $menu-icon-color-active: #64b5ef;
+    $menu-folder-background: #18191d; //
+    $menu-folder-background-active: #212d3b; //
+    $menu-folder-color: #8b97a2; //
+    $menu-folder-color-active: #6abfff;
+    $inbox-menu-background: #212d3b; //
+    $inbox-menu-color: #ffffff; //
+    $inbox-menu-icon: #ffffff; //
+    $inbox-search-icon: #ffffff; //
+    $inbox-search-background: #3d444b; //
+    $inbox-search-color: #ffffff; //
+    $inbox-search-placeholder-color: #7d8b99; //
+    $inbox-search-border-color: transparent; //
+    $inbox-search-border-color-active: transparent; //
+    $inbox-folder-background: #212d3b; //
+    $inbox-folder-background-active: #212d3b; //
+    $inbox-folder-color: #8b97a2; //
+    $inbox-folder-color-active: #6abfff; //
+    $inbox-folder-border-color: #64adff; //
+    $inbox-folder-option-background: #293849; //
+    $inbox-folder-option-icon-color: #8b9baa; //
+    $inbox-folder-option-color: #ffffff; //
+    $inbox-background: #282e33; //
+    $inbox-chat-background-active: #223346;
+    $inbox-chat-background: transparent; //
+    $inbox-chat-background-hover: #33393f;
+    $inbox-chat-border-color: transparent;
+    $inbox-chat-icon-color: #586d80; //
+    $inbox-chat-icon-color-active: $inbox-chat-icon-color; //
+    $inbox-name-color: #ffffff; //
+    $inbox-name-color-active: $inbox-name-color; //
+    $inbox-time-color: #737f8b; //
+    $inbox-time-color-active: $inbox-time-color; //
+    $inbox-msg-color: #7d8b99; //
+    $inbox-msg-color-active: $inbox-msg-color; //
+    $inbox-msg-color-seen: #64afe9; //
+    $inbox-msg-sender-name-color: #e9eef4; //
+    $inbox-msg-sender-name-color-active: $inbox-msg-sender-name-color; //
+    $inbox-pin-icon-color: #586d80;
+    $inbox-pin-icon-color-active: $inbox-pin-icon-color;
+    $inbox-unseen-count-background: #64b5ef; //
+    $inbox-unseen-count-background-active: $inbox-unseen-count-background; //
+    $inbox-unseen-count-color: #ffffff; //
+    $inbox-unseen-count-color-active: $inbox-unseen-count-color; //
+    $inbox-scroll-color: #151c25; //
+    $chat-sender-background: #3e618a; //
+    $chat-receiver-background: #232e3b; //
+    $chat-sender-color: #fafafa; //
+    $chat-receiver-color: #fafafa; //
+    $chat-info-background: #18191d; //
+    $chat-info-top-background: #212d3b; //
+    $chat-info-bottom-background: #212d3b; //
+    $chat-info-top-icons-color: #ffffff; //
+    $chat-info-bottom-icons-color: #6b7a8c; //
+    $chat-info-icons-background-hover: #151e27; //
+    $chat-user-name-color: #ffffff; //
+    $chat-status-color: #8b97a2; //
+    $chat-info-input-placholder: #6a7d90; //
+    $chat-info-input-backgroud: transparent; //
+    $chat-info-input-color: #ffffff; //
+    $chat-info-input-border: none; //
+    $chat-info-broadcast-background: #25313c; //
+    $chat-info-broadcast-color: #ffffff; //
+}

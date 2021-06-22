@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { Form, Button } from "react-bootstrap";
-import Loader from '../../Loader'
-import Message from '../../Message'
+import Loader from '../../components/Loader'
+import Message from '../../components/Message'
 import OtpInput from "react-otp-input";
 import { useSelector, useDispatch } from "react-redux";
-import { verifyOtp,sentOtp,mobilePage } from "../../../actions/authAction";
+import { verifyOtp,sentOtp,mobilePage } from "../../actions/authAction";
 
 
 const VerifyOtpScreen = (props) => {

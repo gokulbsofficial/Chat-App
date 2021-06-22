@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import MobileScreen from "./screens/authScreens/MobileScreen";
-import VerifyOtpScreen from "./screens/authScreens/VerifyOtpScreen";
-import ProfileScreen from "./screens/authScreens/ProfileScreen";
-import CloudPasswordScreen from "./screens/authScreens/CloudPasswordScreen";
+import MobileScreen from "../screens/authScreens/MobileScreen";
+import VerifyOtpScreen from "../screens/authScreens/VerifyOtpScreen";
+import ProfileScreen from "../screens/authScreens/ProfileScreen";
+import CloudPasswordScreen from "../screens/authScreens/CloudPasswordScreen";
 import { makeConnectAuthSocket } from "../actions/authAction";
 
 const StepForm = (props) => {

@@ -7,7 +7,7 @@ const Socket = (http) => {
       origin: [
         process.env.CLIENT_URL,
         "http://localhost:3001",
-        "https://3c9827eb80e5.ngrok.io",
+        "https://73ac6420acb7.ngrok.io",
         "https://hoppscotch.io",
       ],
       credentials: true,
