@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const { token, webAppName } = require("../config/default").server;
 
 const userSchema = mongoose.Schema({
   name: {
@@ -20,12 +20,17 @@ const userSchema = mongoose.Schema({
     type: String,
     lowercase: true,
   },
-  userStatus:{
-    type:String,
-    require:true
+  userStatus: {
+    type: String,
+    require: true,
   },
   profilePic: {
     type: String,
+  },
+  userAbout: {
+    type: String,
+    require: true,
+    default: `Hey there! I am using ${webAppName}`,
   },
   accounts: {
     status: {
@@ -57,7 +62,7 @@ const userSchema = mongoose.Schema({
     },
   },
 
-  logs:{
+  logs: {
     createdAt: {
       type: String,
       required: true,
@@ -80,7 +85,10 @@ userSchema.pre("save", async function (next) {
     next();
   }
   const salt = await bcrypt.genSalt(10);
-  this.TwoStepVerification.password = await bcrypt.hash(this.TwoStepVerification.password, salt);
+  this.TwoStepVerification.password = await bcrypt.hash(
+    this.TwoStepVerification.password,
+    salt
+  );
   next();
 });
 
@@ -89,23 +97,23 @@ userSchema.methods.matchPasswords = async function (password) {
 };
 
 userSchema.methods.getAccessToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: process.env.ACCESS_TOKEN_DURATION,
+  return jwt.sign({ id: this._id }, token.accessToken.secret, {
+    expiresIn: token.accessToken.expires,
   });
 };
 
 userSchema.methods.getRefreshToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: process.env.REFRESH_TOKEN_DURATION,
+  return jwt.sign({ id: this._id }, token.refreshToken.secret, {
+    expiresIn: token.refreshToken.expires,
   });
 };
 
 userSchema.methods.getResetToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_RESET_SECRET, {
-    expiresIn: process.env.RESET_TOKEN_DURATION,
+  return jwt.sign({ id: this._id }, token.resetToken.secret, {
+    expiresIn: token.resetToken.expires,
   });
 };
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;

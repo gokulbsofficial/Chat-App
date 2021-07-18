@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const inboxSchema = mongoose.Schema({
+  type:{
+    type:String,
+    required:true,
+  },
   userId: {
     type: mongoose.Types.ObjectId,
     required: true,
@@ -9,11 +13,11 @@ const inboxSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     required: true,
   },
-  inboxHash: {
-    type: String,
+  conversationId: {
+    type: mongoose.Types.ObjectId,
     required: true,
   },
-  lastMsg: { type: Array, default: [] },
+  lastMsg: { type: Object, default: {} },
   pinned: {
     type: Boolean,
     required: true,

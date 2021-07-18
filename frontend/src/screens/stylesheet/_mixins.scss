@@ -5,6 +5,37 @@
   list-style: none;
 }
 
+@mixin custom-scroll-bar {
+  
+  /* Works on Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #64adff #212d3b;
+
+  /* Works on Chrome, Edge, and Safari */
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px; /* width of the entire scrollbar */
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #212d3b;
+    border-radius: 10px; /* color of the tracking area */
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: blue; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid #64adff; /* creates padding around scroll thumb */
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    border: 3px solid #6abfff;
+  }
+}
 
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 //  MEDIA QUERIES

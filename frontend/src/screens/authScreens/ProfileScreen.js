@@ -27,7 +27,9 @@ const ProfileScreen = (props) => {
   return (
     <Fragment>
       {loading ? (
-        <Loader />
+        <div className="loader-wrapper">
+          <Loader />
+        </div>
       ) : (
         <div className="login-container d-flex align-items-center justify-content-center">
           <Form className="login-form text-center">

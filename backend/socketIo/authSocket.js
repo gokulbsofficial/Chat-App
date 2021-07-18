@@ -1,100 +1,117 @@
 const authHelper = require("../helpers/authHelper");
-var cookieParser = require("socket.io-cookie");
+var cookie = require("cookie");
+const logger = require("../config/logger");
+const {
+  CONNECTION_EVENT,
+  DISCONNECT_EVENT,
+  SENT_OTP_EVENT,
+  VERIFY_OTP_EVENT,
+  LOGIN_PROFILE_EVENT,
+  CLOUD_PASSWORD_EVENT,
+  FORGET_PASSWORD_EVENT,
+  RESET_PASSWORD_EVENT,
+  REFRESH_TOKEN_EVENT,
+  DISCONNECT_AUTH_EVENT,
+} = require("../config/default").authSocketEvent;
+const NAMESPACE = "UserSocket";
 
 const adminSocket = (io) => {
   const auth = io.of("/auth");
+  
+  auth.on(CONNECTION_EVENT, (socket) => {
+    const cookies = cookie.parse(socket.request.headers.cookie || "");
+    logger.info(NAMESPACE, `Cookies => `, cookies);
+    logger.info(
+      NAMESPACE,
+      `New Connection Established in AUTH => ${socket.id}`
+    );
 
-  auth.use(cookieParser);
-
-  auth.on("connection", (socket) => {
-    console.log(`New Connection Established in AUTH`.rainbow.bold);
-
-    socket.on("sent-otp", (data) => {
+    socket.on(SENT_OTP_EVENT, (data) => {
       authHelper
         .sentOtp(data)
         .then((response) => {
-          socket.emit("sent-otp", response);
+          socket.emit(SENT_OTP_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("sent-otp", error);
+          socket.emit(SENT_OTP_EVENT, error);
         });
     });
 
-    socket.on("verify-otp", (data) => {
+    socket.on(VERIFY_OTP_EVENT, (data) => {
       authHelper
         .verifyOTP(data)
         .then((response) => {
-          socket.emit("verify-otp", response);
+          socket.emit(VERIFY_OTP_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("verify-otp", error);
+          socket.emit(VERIFY_OTP_EVENT, error);
         });
     });
 
-    socket.on("login-profile", (data) => {
+    socket.on(LOGIN_PROFILE_EVENT, (data) => {
       authHelper
         .loginProfile(data)
         .then((response) => {
-          socket.emit("login-profile", response);
+          socket.emit(LOGIN_PROFILE_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("login-profile", error);
+          socket.emit(LOGIN_PROFILE_EVENT, error);
         });
     });
 
-    socket.on("cloud-password", (data) => {
+    socket.on(CLOUD_PASSWORD_EVENT, (data) => {
       authHelper
         .cloudPassword(data)
         .then((response) => {
-          socket.emit("cloud-password", response);
+          socket.emit(CLOUD_PASSWORD_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("cloud-password", error);
+          socket.emit(CLOUD_PASSWORD_EVENT, error);
         });
     });
 
-    socket.on("forget-password", (data) => {
+    socket.on(FORGET_PASSWORD_EVENT, (data) => {
       authHelper
         .forgetPasswod(data)
         .then((response) => {
-          socket.emit("forget-password", response);
+          socket.emit(FORGET_PASSWORD_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("forget-password", error);
+          socket.emit(FORGET_PASSWORD_EVENT, error);
         });
     });
 
-    socket.on("reset-password", (data) => {
+    socket.on(RESET_PASSWORD_EVENT, (data) => {
       authHelper
         .resetPassword(data)
         .then((response) => {
-          socket.emit("reset-password", response);
+          socket.emit(RESET_PASSWORD_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("reset-password", error);
+          socket.emit(RESET_PASSWORD_EVENT, error);
         });
     });
 
-    socket.on("refresh-token", (data) => {
+    socket.on(REFRESH_TOKEN_EVENT, (data) => {
       console.log(data);
       // let refreshToken = socket.request.headers.cookie.refreshToken
       authHelper
         .upgradeAccessToken(data)
         .then((response) => {
-          socket.emit("refresh-token", response);
+          socket.emit(REFRESH_TOKEN_EVENT, response);
         })
         .catch((error) => {
-          socket.emit("refresh-token", error);
+          socket.emit(REFRESH_TOKEN_EVENT, error);
         });
     });
 
-    socket.on("disconnect-auth",()=>{
-      socket.disconnect()
-    })
+    socket.on(DISCONNECT_AUTH_EVENT, () => {
+      socket.disconnect();
+    });
 
-    socket.on("disconnect",()=>{
-      console.log(`One AUTH socket disconnected`.rainbow.bold);
-    })
+    socket.on(CONNECTION_EVENT, () => {
+      logger.info(NAMESPACE, `One socket disconnected in AUTH => ${socket.id}`);
+    });
   });
 };
 

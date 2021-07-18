@@ -1,5 +1,6 @@
 * {
     @include reset-list;
+    @include custom-scroll-bar;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -8,6 +9,8 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
                         supported by Chrome and Opera */
+
+
 }
 
 a {
@@ -29,4 +32,9 @@ body {
         width: 100vw;
         height: 100vh;
     }
+}
+.loader-wrapper{
+    display: flex;
+    width: inherit;
+    height: inherit;
 }

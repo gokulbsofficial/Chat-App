@@ -1,27 +1,42 @@
-require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const connectDB = require("./config/db");
 const morgan = require("morgan");
 const app = express();
 const http = require("http").createServer(app);
+const config = require("./config/default");
+const logger = require("./config/logger");
 require("./socketIo/")(http);
 require("colors");
+
+const NAMESPACE = "Server"
 
 // Mongoose Connection
 connectDB();
 
 // Middleware
-if (process.env.NODE_ENV === "development") {
+if (config.server.node_env === "development") {
   app.use(morgan("dev"));
 }
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  /** Log the req */
+  logger.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+
+  res.on('finish', () => {
+      /** Log the res */
+      logger.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - STATUS: [${res.statusCode}] - IP: [${req.socket.remoteAddress}]`);
+  });
+
+  next();
+});
+
 // Static Pages
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+if (config.server.node_env === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build/")));
   app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
   });
@@ -31,10 +46,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000;
-
-http.listen(PORT, () =>
-  console.log(
-    `Server running on ${process.env.NODE_ENV} mode in PORT ${PORT}`.yellow.bold
+http.listen(config.server.port, () =>
+  logger.info(
+    NAMESPACE,
+    `Server running on ${config.server.node_env} mode in PORT ${config.server.port}`
   )
 );

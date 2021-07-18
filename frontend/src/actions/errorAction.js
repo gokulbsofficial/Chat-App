@@ -1,10 +1,10 @@
 import { GET_ERRORS, CLEAR_ERRORS } from "../constants/errorConstants";
 
 export const retrunErrors =
-  (msg = `Try again!!! `, statusCode = null , id = null) => {
+  (msg = `Server Error!!! `, success = false , id = null) => {
     return {
       type: GET_ERRORS,
-      payload: { msg, statusCode, id },
+      payload: { msg, success, id },
     };
   };
 

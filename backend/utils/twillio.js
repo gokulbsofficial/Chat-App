@@ -1,6 +1,5 @@
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require("twilio")(accountSid, authToken);
+const { twilio } = require("../config/default");
+const client = require("twilio")(twilio.accountSid, twilio.authToken);
 
 const setErrorMessage = (message, code) => {
   let error = { message };
@@ -24,7 +23,7 @@ module.exports = {
   sentOtp: (mobile, channel) => {
     return new Promise((resolve, reject) => {
       client.verify
-        .services(process.env.TWILIO_SERVICES_ID)
+        .services(twilio.servicesId)
         .verifications.create({
           to: `+${mobile}`,
           channel: `${channel || "sms"}`,
@@ -43,7 +42,7 @@ module.exports = {
   verifyOtp: (mobile, code) => {
     return new Promise((resolve, reject) => {
       client.verify
-        .services(process.env.TWILIO_SERVICES_ID)
+        .services(twilio.servicesId)
         .verificationChecks.create({ to: `+${mobile}`, code: code })
         .then(async (verification_check) => {
           if (verification_check.valid) {

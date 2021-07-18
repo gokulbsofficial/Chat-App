@@ -23,8 +23,6 @@ import {
   ACCESS_TOKEN_SUCCESS,
   ACCESS_TOKEN_ERROR,
   ACCESS_TOKEN_NOTFOUND,
-  AUTH_SOCKET_CONNECT,
-  AUTH_SOCKET_DISCONNECT,
 } from "../constants/authConstants";
 import {
   connectAuthSocket,
@@ -37,36 +35,43 @@ import {
   refreshTokenScoket,
   disconnectAuthScoket,
 } from "../socketIo/authSocket";
-import {
-  disconnectUserScoket
-} from "../socketIo/userSocket";
+import { disconnectUserScoket } from "../socketIo/userSocket";
 import { userLogoutAction } from "./userActions";
 import { retrunErrors } from "./errorAction";
 import Cookies from "universal-cookie";
 import {
   USER_SOCKET_DISCONNECT,
-} from "../constants/userConstants";
+  CONNECT_EVENT,
+  DISCONNECT_EVENT,
+  ERROR_EVENT,
+} from "../constants/userSocketConstants";
+import {
+  AUTH_SOCKET_CONNECT,
+  AUTH_SOCKET_DISCONNECT,
+  AUTH_SOCKET_CONNECTED,
+  AUTH_SOCKET_DISCONNECTED,
+  AUTH_SOCKET_ERROR
+} from "../constants/authSocketConstants";
 const cookies = new Cookies();
 
-export const makeConnectAuthSocket = () => async (dispatch, getState) => {
-  try {
-    const { token, authSocket } = getState().authInfo;
-    const { userSocket } = getState().userInfo;
-    if (!token) {
-      console.log(token);
-      if (!authSocket) {
-        await connectAuthSocket(token);
-        dispatch({ type: AUTH_SOCKET_CONNECT });
-        if (userSocket) {
-          await disconnectUserScoket();
-          dispatch({ type: USER_SOCKET_DISCONNECT });
+export const makeConnectAuthSocket =
+  (token, authSocket) => async (dispatch, getState) => {
+    try {
+      const userSocket = getState().userSocketInfo.connected;
+      if (!token) {
+        if (!authSocket) {
+          await connectAuthSocket(token);
+          dispatch({ type: AUTH_SOCKET_CONNECT });
+          if (userSocket) {
+            await disconnectUserScoket();
+            dispatch({ type: USER_SOCKET_DISCONNECT });
+          }
         }
       }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
 export const sentOtp = (mobile, channel) => async (dispatch) => {
   try {
@@ -99,8 +104,8 @@ export const verifyOtp = (mobile, code) => async (dispatch) => {
         dispatch({ type: USER_OTP_VERIFY_SUCCESS, pageStep: 4 });
       } else {
         localStorage.setItem("userToken", JSON.stringify(data.token));
-        dispatch({ type: USER_LOGIN_SUCCESS });
         dispatch({ type: GET_TOKEN_SUCCESS, payload: data.token, pageStep: 1 });
+        dispatch({ type: USER_LOGIN_SUCCESS });
         await disconnectAuthScoket();
         dispatch({ type: AUTH_SOCKET_DISCONNECT });
       }
@@ -120,14 +125,13 @@ export const loginProfile = (loginData) => async (dispatch) => {
     dispatch({ type: USER_PROFILE_REQUEST });
 
     let { data } = await loginProfileSocket(loginData);
-    
+
     localStorage.setItem("userToken", JSON.stringify(data.token));
+    dispatch({ type: GET_TOKEN_SUCCESS, payload: data.token, pageStep: 1 });
     dispatch({ type: USER_PROFILE_SUCCESS });
     dispatch({ type: USER_LOGIN_SUCCESS });
-    dispatch({ type: GET_TOKEN_SUCCESS, payload: data.token, pageStep: 1 });
     await disconnectAuthScoket();
     dispatch({ type: AUTH_SOCKET_DISCONNECT });
-
   } catch (error) {
     dispatch(retrunErrors(error.msg, error.statusCode, "USER_PROFILE_FAIL"));
 
@@ -145,8 +149,8 @@ export const cloudPassword = (mobile, password) => async (dispatch) => {
     let { data } = await cloudPasswordSocket(mobile, password);
 
     localStorage.setItem("userToken", JSON.stringify(data.token));
-    dispatch({ type: USER_LOGIN_SUCCESS });
     dispatch({ type: GET_TOKEN_SUCCESS, payload: data.token, pageStep: 1 });
+    dispatch({ type: USER_LOGIN_SUCCESS });
     await disconnectAuthScoket();
     dispatch({ type: AUTH_SOCKET_DISCONNECT });
   } catch (error) {
@@ -226,3 +230,25 @@ export const checkRefreshToken = () => (dispatch) => {
       });
   }
 };
+
+export const authSocketEmittedAction =
+  ({ data, Event }) =>
+  (dispatch) => {
+    switch (Event) {
+      case CONNECT_EVENT: {
+        dispatch({ type: AUTH_SOCKET_CONNECTED, payload: data });
+        break;
+      }
+      case DISCONNECT_EVENT: {
+        dispatch({ type: AUTH_SOCKET_DISCONNECTED, payload: data });
+        break;
+      }
+      case ERROR_EVENT: {
+        dispatch({ type: AUTH_SOCKET_ERROR, payload: data });
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };

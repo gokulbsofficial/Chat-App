@@ -11,7 +11,6 @@
         width: 100%;
         height: 100vh;
         background: $inbox-background;
-        overflow-x: scroll;
 
         @include respond-above(md) {
             -ms-overflow-style: none;
@@ -25,9 +24,8 @@
         .recent-chat-info-top {
             background: $inbox-menu-background;
             @include respond-above(md) {
-                background: transparent; 
+                background: transparent;
             }
-
 
             .ico {
                 width: 100%;
@@ -105,7 +103,7 @@
                         color: $inbox-search-color;
                         background: $inbox-search-background;
 
-                        &::placeholder{
+                        &::placeholder {
                             color: $inbox-search-placeholder-color;
                         }
 
@@ -113,8 +111,8 @@
                         // -webkit-appearance: none;
                         // }
 
-                        &:active{
-                            border: inbox-search-border-color-active;   
+                        &:active {
+                            border: inbox-search-border-color-active;
                         }
                     }
 
@@ -148,7 +146,7 @@
 
         .menu-panel {
             width: 100%;
-            height: 42px;
+            height: 50px;
             position: sticky;
             top: 0;
             z-index: 999;
@@ -179,7 +177,7 @@
                         cursor: pointer;
                         font-size: 15px;
                         font-weight: $font-bold;
-                        color:  $inbox-folder-color;
+                        color: $inbox-folder-color;
                         border-radius: 3px;
 
                         &:active {
@@ -203,14 +201,18 @@
 
         .recent-chats {
             background-color: $inbox-background;
-            height: calc(100vh - 58px);
-            .private-chat {
+            height: calc(100vh - 100px);
+            overflow-y: scroll;
+
+            .private-chat,
+            .group-chat,
+            .search-user {
                 width: 100%;
                 height: 80px;
                 padding: 7px;
                 position: relative;
                 cursor: pointer;
-                background:  $inbox-chat-background;
+                background: $inbox-chat-background;
 
                 @include respond-above(md) {
                     height: 68px;
@@ -225,7 +227,8 @@
                     background: $inbox-chat-background-hover;
                 }
 
-                .profile_pic {
+                .profile_pic,
+                .group_pic {
                     width: 56px;
                     height: 56px;
                     border-radius: 30px;
@@ -239,23 +242,26 @@
                     }
                 }
 
-                .chat {
+                .chat_details,
+                .user_details {
                     // width: 82%;
                     height: inherit;
                     margin-left: 4rem;
                     position: relative;
-                    border-bottom:2px solid   $inbox-chat-border-color;
+                    border-bottom: 2px solid $inbox-chat-border-color;
 
                     @include respond-above(md) {
                         // height: 55px;
                     }
 
-                    &.active{
-                        .user_name {
+                    &.active {
+                        .user_name,
+                        .group_name {
                             color: $inbox-name-color-active;
                         }
-                        .last_msg {
-                            color:$inbox-msg-color-active;
+                        .last_msg,
+                        .user_about {
+                            color: $inbox-msg-color-active;
                         }
                         .last_msg_time {
                             color: $inbox-time-color-active;
@@ -266,7 +272,8 @@
                         }
                     }
 
-                    .user_name {
+                    .user_name,
+                    .group_name {
                         position: absolute;
                         top: 0.8rem;
                         left: 0.4rem;
@@ -276,9 +283,10 @@
                             left: 0.4rem;
                         }
                     }
-                    .last_msg {
+                    .last_msg,
+                    .user_about {
                         position: absolute;
-                        bottom: 1.3rem;
+                        bottom: 1.05rem;
                         left: 0.45rem;
                         color: $inbox-msg-color;
                         @include respond-above(md) {
@@ -288,7 +296,7 @@
                     }
                     .last_msg_time {
                         position: absolute;
-                        top: 0.3rem; 
+                        top: 0.3rem;
                         right: 0rem;
                         color: $inbox-time-color;
                         @include respond-above(md) {
@@ -303,9 +311,11 @@
                         background-color: $inbox-unseen-count-background;
                         position: absolute;
                         bottom: 1.2rem;
-                        right: 0.4rem;
-                        padding: 2px 6px;
+                        right: 1.2rem;
                         color: $inbox-unseen-count-color;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
 
                         &#hidden {
                             display: none;

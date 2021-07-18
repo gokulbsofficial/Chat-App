@@ -1,20 +1,20 @@
 const jwt = require("jsonwebtoken");
+const logger = require("../config/logger");
 const User = require("../models/userModel");
+const { accessToken } = require("../config/default").server.token;
 const { ObjectId } = require("mongoose").Types;
+
+const NAMESPACES = "AuthMiddleware";
 
 exports.authorization = async (socket, next) => {
   try {
-    let { headers } = socket.handshake;
-
-    const token = headers.authorization
-      ? headers.authorization.split(" ")[1]
-      : null;
+    const token = socket.handshake.auth.token || null;
 
     if (!token) {
       return next(new Error("Token Not Found"));
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+    const decoded = jwt.verify(token, accessToken.secret);
 
     const user = await User.aggregate([
       {
@@ -22,11 +22,12 @@ exports.authorization = async (socket, next) => {
       },
       {
         $project: {
-          userStatus: 0,
-          accounts: 0,
-          TwoStepVerification: 0,
-          logs: 0,
-          __v: 0,
+          name: 1,
+          userName: 1,
+          mobile: 1,
+          profilePic: 1,
+          email: 1,
+          accountStatus: "$accounts.status",
         },
       },
     ]);
@@ -35,19 +36,15 @@ exports.authorization = async (socket, next) => {
       return next(new Error("Unauthorized event"));
     }
 
-    // if (user !== 0 && user.status === "Blocked") {
-    //   return reject({
-    //     data: {
-    //       msg: `Yours account is Blocked for Spam Reports`,
-    //     },
-    //   });
-    // }
+    if (user.length !== 0 && user[0].accountStatus === "Blocked") {
+      return next(new Error(`Yours account is Blocked for Spam Reports`));
+    }
 
     socket.user = user[0];
 
     next();
   } catch (error) {
-    console.log(error.message);
+    logger.error(NAMESPACES, error.message, error);
     return next(new Error("Unauthorized event"));
   }
 };

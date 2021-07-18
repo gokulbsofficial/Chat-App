@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { SERVER_URL } from "../constants/commonConstant";
+import { SERVER_URL } from "../constants/commonConstants";
 
 const URL = SERVER_URL;
 

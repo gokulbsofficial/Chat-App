@@ -25,8 +25,6 @@ import {
   ACCESS_TOKEN_SUCCESS,
   ACCESS_TOKEN_ERROR,
   ACCESS_TOKEN_NOTFOUND,
-  AUTH_SOCKET_CONNECT,
-  AUTH_SOCKET_DISCONNECT,
 } from "../constants/authConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -110,16 +108,6 @@ export const userLoginReducer = (state = {}, action) => {
           success: action.payload.success,
           message: action.payload.msg,
         },
-      };
-    case AUTH_SOCKET_CONNECT:
-      return {
-        ...state,
-        authSocket: true,
-      };
-    case AUTH_SOCKET_DISCONNECT:
-      return {
-        ...state,
-        authSocket: false,
       };
     default:
       return state;
