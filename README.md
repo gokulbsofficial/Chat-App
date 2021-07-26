@@ -8,7 +8,7 @@ Login with otp for chat app
 
 ## Contributors
 
-- Gokul <gokulsreejith22002@gmail.com>
+- GokulSreejith <gokulsreejith22002@gmail.com>
 
 ---
 
